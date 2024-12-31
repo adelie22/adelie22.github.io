@@ -21,7 +21,7 @@ title                    : "Haru's note"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "LJH"
-description              : "An amazing website."
+description              : ""
 url                      : "https://adelie22.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
