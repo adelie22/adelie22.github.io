@@ -11,7 +11,7 @@
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
 # theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
+remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
@@ -315,13 +315,13 @@ compress_html:
 defaults:
   # _posts
   - scope:
-      path: false
+      path: ""
       type: posts
     values:
       layout: single
       author_profile: false
       read_time: false # ~분 소요 
-      comments: # true
+      comments: false
       share: false # 트윗, 페북에 공유가능한 버튼
       related: false # 가장 아래에 다른 포스팅도 보이게 하는 것
       show_date: false
