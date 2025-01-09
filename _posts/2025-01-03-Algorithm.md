@@ -1,3 +1,15 @@
+---
+layout : single
+title : Algorithm
+categories : Algorithm
+tag : Algorithm
+toc : true
+toc_sticky: true 
+author_profile : false
+sidebar:
+    nav : "counts"
+---
+
 - 작성언어
     1. 파이썬
         1. 동적언어로 코딩이 빠르지만 디버깅 까다롭고 타입 제약이 없어 코드가 복잡해지면 이해 어려움
