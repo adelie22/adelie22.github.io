@@ -1,16 +1,3 @@
----
-layout : single
-title : Algorithm
-categories : Algorithm
-tag : Algorithm
-toc : true
-toc_sticky: true 
-author_profile : false
-sidebar:
-    nav : "counts"
----
-
-
 - 작성언어
     1. 파이썬
         1. 동적언어로 코딩이 빠르지만 디버깅 까다롭고 타입 제약이 없어 코드가 복잡해지면 이해 어려움
@@ -288,3 +275,157 @@ void push (const value_type& val);
 value_type& top(); // 스택 가장 위의 요소 참조 반환
 void pop(); // 가장 위 요소 제거
 ```
+
+## 0.2 JAVA
+
+### 0.2.1 배열 Array
+
+```cpp
+데이터타입[] 배열이름;   // 권장 방식
+배열이름 = new 데이터타입[크기];  // 크기를 지정하여 배열 생성
+numbers = new int[5];     // 크기가 5인 int형 배열 생성
+names = new String[3];    // 크기가 3인 String형 배열 생성
+
+int m = 5, n = 10;
+int[] nums = new int[n] //선언과 생성 동시에
+int[] numbers = new int[5];     // 크기가 5인 int형 배열 생성
+boolean[][] visited = new boolean[m][n]; // m by n bool 배열 선언과 데이터 크기 동시 생성
+
+// 일부 문제는 함수를 파라미터 형식으로 전달하며, 보통 함수 시작부분에 null 검사를 하고 인덱스를 사용해 요소에 접근
+
+if(nums.length == 0)
+return;
+for(int i = 0; i < nums.length; i++) {
+// nums[i] 엑세스
+}
+```
+
+### 0.2.2 문자열 string
+
+- 자바에서 string은 []를 사용해 직접 문자에 엑세스할 수 없으므로 문자열 처리가 불편함. 또한 직접 수정이 불가하여 char[] 유형으로 변환 후 수정 가능하다
+
+```cpp
+String s1 = "hello world";
+// s1[2] 문자 가져오기
+char c = s1.charAt(2); 
+
+char[] chars = s1.toCharArray()
+// toCharArray()는 문자열을 문자 배열로 변환하여 반환하여 s1 배열에 저장
+chars[1] = 'a';
+String s2 = new String(chars); // string에 char배열의 내용을 복사하여 새로운 문자열 객체생성
+// print : hallo world
+System.out.println(s2); //출력 명령문
+
+//문자열 동일 여부 판단은 반드시 equals() 사용
+if(s1.equals(s2)) {
+ // s1, s2 같으면 true로 해당 블록 실행
+ } else { // 다르면 false로 해당블록 실행 }
+ 
+ //문자열은 + 기호로 연산 가능
+ String s3 = s1 + "!";
+ System.out.println(s3); // hello world!
+ 
+ //문자열 병합에 + 사용 가능하지만 비효율적이며 for 루프에서는 사용하지 않는 걸 권장. 
+ //문자열 병합을 자주 하게 된다면 StringBuilder사용을 권장
+ 
+ StringBuilder sb = new StringBuilder()
+ 
+ for (char c = 'a'; c <= 'f'; c++) {
+ sb.append(c);
+ }
+ 
+ //append 메서드는 문자, 문자열, 숫자 등 유형 지원
+ sb.append('g').append("hij").append(123);
+ 
+ String res = sb.toString();
+ System.out.println(res)
+ System.out.println(sb.toString()); // 따로 변수 저장안하고 바로 출력하려면
+ // 자바는 항상 출력할 때 String으로 출력해야함
+```
+
+  **- 참고 -**
+
+- `StringBuilder`는 **문자열을 효율적으로 수정하거나 추가**할 수 있도록 설계된 자바 클래스
+- **패키지 위치:** `java.lang.StringBuilder`
+- **주요 특징:**
+    - 문자열을 **mutable(수정 가능)**하게 다룰 수 있습니다.
+    - 새로운 문자열 객체를 생성하지 않고 기존 문자열을 수정하여 성능이 좋습니다.
+    - 주로 문자열을 **반복적으로 추가, 삭제, 수정**해야 할 때 사용합니다.
+
+### 0.2.3 동적 배열 ArrayList
+
+- C++의 vector와 유사하게 ArrayList는 자바에 내장된 배열 타입을 캡슐화한 것과 같으며, 초기화방법은 다음과 같다.
+
+```cpp
+// String 타입의 데이터를 저장하는 동적 배열 초기화
+ArrayList<String> nums = new ArrayList<>();
+
+// int 타입의 데이터를 저장하는 동적 배열 초기화
+ArrayList<Inteher> strings = new ArrayList<>()
+
+-----------------------------------------------
+//method
+
+// 배열 null 여부 판단
+boolean isEmpty()
+// 배열 요소 개수 반환
+int size()
+// index 요소 반환
+E get(int index)
+// 배열 끝에 요소 e 추가
+boolean add(E e)
+```
+
+- 샘플코드
+
+```cpp
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        // String 타입의 데이터를 저장하는 동적 배열 초기화
+        ArrayList<String> nums = new ArrayList<>();
+
+        // int 타입의 데이터를 저장하는 동적 배열 초기화
+        ArrayList<Integer> strings = new ArrayList<>();
+
+        // 1. isEmpty() - 배열이 비어 있는지 확인
+        System.out.println("nums is empty: " + nums.isEmpty()); // true
+        System.out.println("strings is empty: " + strings.isEmpty()); // true
+
+        // 2. add(E e) - 배열 끝에 요소 추가
+        nums.add("Hello");
+        nums.add("World");
+        strings.add(10);
+        strings.add(20);
+
+        System.out.println("\nAfter adding elements:");
+        System.out.println("nums: " + nums); // [Hello, World]
+        System.out.println("strings: " + strings); // [10, 20]
+
+        // 3. size() - 배열 요소 개수 반환
+        System.out.println("\nnums size: " + nums.size()); // 2
+        System.out.println("strings size: " + strings.size()); // 2
+
+        // 4. get(int index) - 특정 인덱스의 요소 반환
+        System.out.println("\nnums[0]: " + nums.get(0)); // Hello
+        System.out.println("strings[1]: " + strings.get(1)); // 20
+    }
+}
+
+nums is empty: true
+strings is empty: true
+
+After adding elements:
+nums: [Hello, World]
+strings: [10, 20]
+
+nums size: 2
+strings size: 2
+
+nums[0]: Hello
+strings[1]: 20
+
+```
+
+### 0.2.4 이중 연결 리스트 LinkedList
