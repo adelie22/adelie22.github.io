@@ -229,4 +229,62 @@ coutner[num]++; // 있다면 ++
 }
 ```
 
-### 0.1.4 해시 테이블 unordered_map
+### 0.1.4 해시 세트 unordered_set
+
+- `unordered_set`은 **유일한 키(key)를 저장**하며, 키의 순서는 해시 함수에 의해 결정. 이는 **중복되지 않는 데이터를 빠르게 저장하고 검색**할 때 사용
+
+```cpp
+unordered_set<int> visited;
+//int를 저장하는 해시 세트 초기화
+unordered_set<string> visited;
+//stringd을 저장하는 해시세트 초기화
+
+-------------------------------------------------
+
+//method
+
+size_type size(); // 해시테이블 key-value 세트 수 반환
+bool empty(); // 해시테이블 Null 여부
+size_type count (const key_type& key); // 해시 테이블과 유사하게 키 존재여부로 1, 0 반환
+pair<iterator,bool> insert (const key_tpye& key); // pair에 key 삽입
+
+// 해시 세트 키 제거
+// 제거 성공 시 1, 존재하지 않으면 0 반환
+size_type eraser (const key_type& key);
+```
+
+### 0.1.5 큐 queue
+
+```cpp
+queue<int> q; // int 저장할 queue 초기화
+queue<string> q; // string 저장할 queue 초기화
+
+-------------------------------------------------
+//method
+bool empty()
+size_type size();
+void push (const value_type& val); // queue 끝에 요소 추가
+value)type& front(); // queue 첫 번째 요소 반환
+void pop(); // queue 첫 번째 요소 제거
+// queue 구조는 단순하므로 주의 필요 C++에서 queue의 pop()은 보통 void type이며, 
+// 삭제된 요소 반환하지 않는다
+// 아래와 같이 사용
+int e = q.front;  
+q.pop() 
+
+```
+
+### 0.1.6 스택 stack
+
+```cpp
+stack<int> stk;
+stack<string> stk;
+
+-------------------------------------------------
+//method
+bool empty();
+size_type size();
+void push (const value_type& val);
+value_type& top(); // 스택 가장 위의 요소 참조 반환
+void pop(); // 가장 위 요소 제거
+```
