@@ -115,11 +115,7 @@ analytics:
 author:
   name             : "Haru"
   avatar           : "/images/blog_main_3.png"
-<<<<<<< HEAD
   bio              : "iOS개발자가 되고싶은"
-=======
-  bio              : "최종적으로는 ios개발자가 되고싶어서 이것저것 공부하는중"
->>>>>>> b4344500fcc62a508b8d160dc4bbe6debeac9a82
   location         : "Seoul"
   email            : "Fredhwan2@gmail.com"
   links:
