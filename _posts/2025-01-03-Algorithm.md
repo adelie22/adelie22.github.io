@@ -386,6 +386,7 @@ int size()
 E get(int index)
 // 배열 끝에 요소 e 추가
 boolean add(E e)
+// E는 요소의 자료형(type)
 ```
 
 - 샘플코드
@@ -441,3 +442,246 @@ strings[1]: 20
 ```
 
 ### 0.2.4 이중 연결 리스트 LinkedList
+
+- ArrayList의 내부는 배열이지만 LinkedList의 내부는 이중 연결 리스트의 구조임.
+
+```cpp
+//int 타입의 데이터를 저장하는 이중 연결 리스트 초기화
+Linkedlist<Inteher> nums = new linkedList<>();
+//string 타입의 데이터를 저장하는 이중 연결 리스트 초기화
+Linkedlist<String> strings = new linkedList<>();
+
+-----------------------------------------------
+//method
+boolean isEmpty(); //null 판단
+int size() // 요소 갯수 반환
+boolean contains(Object o) // 요소 o 존재 여부 확인
+boolean add(E e) // 끝에 e 추가
+void addFisrt(E e) // 처음에 e 추가
+E removeFirst() // 첫 요소 삭제
+E removeLast() // 마지막 요소 삭제
+```
+
+- contains()의 시간복잡도는 O(N)인데 이는 요소의 존재여부를 판단하기 위해 전체 연결리스트를 순회하기 때문
+- 함수의 반환 값이 List 타입인 문제 유형이 많으며, ArrayList와 LinkedList는 모두 List 타입의 서브 클래스이다. 데이터 구조, 특성에 따라 둘 중 하나를 선택해야하며, 마지막에 값을 직접 반환한다.
+- List는 부모 클래스이고 나머지 두개는 서브클래스
+
+| 특징 | **ArrayList** | **LinkedList** |
+| --- | --- | --- |
+| **데이터 저장 방식** | 동적 배열 | 이중 연결 리스트 |
+| **삽입/삭제 속도** | 느림 (중간 삽입/삭제 시 요소 이동 필요) | 빠름 (리스트의 중간 삽입/삭제 용이) |
+| **읽기/접근 속도** | 빠름 (인덱스를 통한 O(1) 접근 가능) | 느림 (O(n), 노드 탐색 필요) |
+| **메모리 사용량** | 적음 (배열 기반) | 많음 (노드와 포인터 메모리 사용) |
+
+### 0.2.5 해시 테이블 HashMap
+
+```cpp
+//정수를 문자열 해시 테이블로 매핑
+HashMap<Integer, String> map = new HashMap<>();
+//문자열를 문자열 해시 테이블로 매핑
+HashMap<String, int[]> map = new HashMap<>();
+
+-----------------------------------------------
+//method (K는 테이블 key, V 는 테이블 값)
+
+boolean containsKey(Object key) // 해시테이블 내 키 존재여부 판단
+V get(Object key) // 키 값을 가져오고, 존재하지 않으면 null 반환
+V put(K key, V value) // 키와 값 세트를 해시 테이블에 저장
+V remove(Object key) // 키 존재 시 키 제거 후 해당 값 반환
+V getOrDefualt(Object key, V defaultValue) // 키 값 가져오고 존재하지 않으면 default V 반환
+Set<K> keySet() // 해시 테이블 내 모든 키 가져오기
+V putIfAbsent(K key, V value)
+// 키가 존재하지 않으면 키 값 세트를 해시 테이블에 저장
+// 키가 존재하면 아무 동작 하지 않음
+```
+
+### 0.2.6 해시 세트 HashSet
+
+```cpp
+// String을 저장하는 해시 세트 생성
+Set<String> set = new hashSet<>();
+
+-----------------------------------------------
+//method (K는 테이블 key, V 는 테이블 값)
+
+boolean add(E e) // e값 존재하지 않으면 추가
+boolean contains(Objects o) // 요소 o 해시 세트 내 존재여부 판단
+boolean remove(Object o) // 요소 o 존재 시 제거
+
+```
+
+### 0.2.7 큐 Queue
+
+```cpp
+// String을 저장하는 큐 초기화
+Queue<string> q = new LinkedList<>();
+
+-----------------------------------------------
+//method
+
+boolean isEmpty() // null 여부 판단
+int size() // 개수 반환
+E peek() // 요소 반환
+E poll() // 큐 요소 제일 앞 요소 삭제 및 반환
+boolean offer(E e) // 큐 제일 뒤 요소 추가
+```
+
+### 0.2.8 스택 Stack
+
+```cpp
+Stack<Integer> s = new Stack<>(); // int 형 스택 생성
+
+-----------------------------------------------
+//method
+
+boolean isEmpty() // null 판단
+int size() // 갯수 반환
+E push(E item) // 해당 요소를 스택 제일 위로 푸시
+E peek() // 스택 요소 반환
+E pop() // 스택 제일 위 요소 제거 및 반환
+```
+
+## 0.3 Python 3
+
+- 타입에 약한 언어는 감지할 수 없는 버그가 발생하기 쉽고, 언어 자체에도 기능이 많아 알고리즘 풀이 자체에 집중하기 적합하지 않음. 아이디어를 이해하기 위한 용도로만 사용 예정
+- 기본 데이터 구조인 list, tuple dictionary, hash table만 정리
+
+```python
+# 스택
+stack = []
+stack.append(1)
+stack.append(2)
+e1 = stack.pop() # 스택 가장 위 요소 삭제 및 반환
+e2 = stack[-1] # 스택 가장 위 요소 확인
+
+# 이외에도 자주 사용되는 데이터 구조는 tuple, dict이다. 
+# 두 데이터 구조를 하향식(top-down)동적 계획법의 메모기능에 자주 사용함
+
+memo = dict()
+# 이차 동적 계획법의 dp 함수
+def dp(i, j):
+# 튜플(i, j)를 해시 테이블의 키로 사용
+# in 키워드를 사용해 해시 테이블 내 키 존재 여부를 탐색
+if (i, j) in memo:
+# 키(i,j)에 해당하는 값 반환
+return( memo[(i, j)]
+# 상태 전이 방정식
+memo[(i, j)] = ...
+
+return memo[(i, j)]
+```
+
+## 0.3 Chapter 1.1
+
+- 기본적인 알고리즘의 사고
+    - 전체 → 부분, 위 → 아래, 추상적인 부분 → 구체적인 부분
+
+### 0.3.1 데이터 구조와 저장 방식
+
+- 데이터 구조의 기본 저장 방식 2가지
+    1. 배열(순차 저장 방식) 
+        1. 끊어지지 않고 연속되는 저장 방식, 임의 접근 가능
+        2. 인덱스를 통해 빠르게 요소 찾기 가능, 저장공간 절약
+        3. 연속저장방식은 메모리를 한 번에 할당해야함, 배열 확장하는 경우 더 큰 배열을 새로 할당 후 복사를 해야하므로 시간복잡도는 O(N)
+        4. 배열 중간에 요소를 삽입하거나 삭제하려면 연속성 유지를 위해 매번 뒤의 모든 데이터를 이동해야하므로 시간복잡도는 O(N)
+    2. 연결 리스트(체인 저장 방식)
+        1. 요소는 연속되지 않고 다음 위치를 가르키는 포인터에 의존, 배열의 확장과 같은 문제가 발생하지 않음
+        2. 요소의 선, 후행 요소만 알면 포인터를 조작해 요소의 제거와 삽입이 가능 O(1)
+        3. 저장 공간이 연속되지 않기에 인덱스를 사용한 요소의 위치는 계산할 수 없어 임의 접근이 불가능. 각 요소에 반드시 선, 후행 요소의 위치에 대한 포인터 저장이 필요하므로 배열보다 저장공간 더 많이 필요
+- **스택, 큐, 힙, 트리, 그래프**는 데이터 구조 중에서도 **“상부구조”**에 속한다
+- 배열과 연결리스트는 기초에 해당하는 **“하위구조(substructure)”**이다.
+- 모든 상부구조는 하위구조를 이용하여 구현할 수 있다.
+    - 배열 사용(확장 & 축소 개념)
+    - 연결 리스트(더 많은 메모리 공간 필요)
+- 그래프의 표현 방법 2가지
+    1. 인접 리스트(adjacency list) == linked-list
+        1. 공간을 절약하지만 인접행렬보다 효율성 낮음
+    2. 인접 행렬(adjacency matrix) == multi-dimensional array
+        1. 연결성을 빠르게 판단하는데 사용 but 그래프가 희소한 경우 많은공간 차지
+- 해시 테이블 : 해시함수를 통해 키를 하나의 큰 배열에 매핑
+    - 해시 충돌을 해결하는 법
+        1. 개방 해싱(open hashing) : 연결 리스트의 특성 이용, 조작 간편, 포인터 저장을 위한 추가 공간 필요
+        2. 폐쇄 해싱(closed hashing) : 배열 특성을 사용하여 연속 주소를 지정하여 포인터 저장공간 불필요, 조작이 복잡
+- 트리 : 배열을 사용하여 힙을 구현 가능
+    - 힙 : 완전 이진 트리이므로 배열을 사용하면 노드 포인터가 필요 없어 조작이 간단, 연결리스트를 사용하면 일반적인 트리가 되지만 완전 이진 트리는 아니므로 배열 사용은 부적합.
+    - 연결 리스트 트리 구조를 기반으로 이진 탐색 트리, AVL, Red-Black, 간격, B 트리 등 다양한 설계 파생
+
+### 0.3.2 데이터 구조의 기본 조작
+
+- 모든 데이터 구조의 기본 작업은 순회(traversal) & 접근(access)
+    - 구체적으로는 추가, 삭제, 검색, 수정
+- 데이터 구조의 목적 : 다양한 상황에서 데이터를 효율적으로 추가, 삭제, 검색, 수정하는 것
+- 각 데이터 구조에 대한 traversal & access 방법은 선형 & 비선형 두 가지 방식이 존재
+    - 선형 : for/while 반복
+    - 비선형 : 재귀
+- 배열 순회는 전형적인 선형 반복 구조
+
+```java
+// JAVA에서 void return, 매개변수로 int 배열을 받는 함수, for로 모든 요소 순회
+void traverse(int[] arr) {
+	for (int i = 0; i < arr.length; i++) }
+	}
+}
+```
+
+- 연결 리스트는 순회와 반복 및 재귀 구조를 갖는다
+
+```java
+기본 싱글 연결 리스트 노드
+
+(클래스 정의)
+class ListNode {
+	int val; // 노드의 값
+	ListNode next; // A pointer that points to another node.
+}
+// The next pointer of the end node is null
+
+(반복을 이용한 순회)
+void traverse(ListNode head) {
+	for (ListNode p = head; p != null; p = p.next) {
+	// reiterate p.val 
+	// 포인터 변수 p 가 첫 노드를 가르키도록 초기화, 포인터가 가르키는 요소가 null이 아니면
+	// 포인터를 다음으로 이동
+	}
+}
+
+(재귀를 이용한 순회)
+void traverse(ListNode head) {
+	// 전위 순회 head.val
+	traverse(head.next);
+	// 후위 순회 head.val
+}
+```
+
+- 이진 트리 순회는 일반적인 비선형 재귀 순회 구조 : 각 노드가 최대 2개의 자식을 가질 수 있는 트리
+
+```java
+class TreeNode {
+	int val;
+	TreeNode left, right;
+}
+
+void traverse(TreeNode root) {
+		//전위 순회
+		traverse(root.left);
+		//중위 순회
+		traverse(root.right);
+		//후위 순회
+}
+```
+
+- 이진 트리 순회는 N항 트리 순회로 확장 가능 : 각 노드가 최대 n개의 자식 노드를 가지는 트리
+
+```java
+class TreeNode {
+	int val;
+	TreeNode[] children;
+}
+
+void traverse(TreeNode root) {
+	for (TreeNode child : root.children)
+		traverse(child);
+}
+```
+
+### 0.3.3 알고리즘 문제 해결 가이드
