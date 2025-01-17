@@ -685,3 +685,122 @@ void traverse(TreeNode root) {
 ```
 
 ### 0.3.3 알고리즘 문제 해결 가이드
+
+- 데이터 구조는 도구이며, 알고리즘은 적절한 도구를 사용해 특정 문제를 해결하는 방법임. 따라서 알고리즘을 배우기 전에 데이터 구조의 특성을 이해해야 함
+
+### LeetCode 124_Hard_이진 트리의 최대 경로 합계(C++)
+
+- 최대경로의 합 : 임의의 노드에서 시작해서 각 노드를 최대 한번만 방문하는 연속된 노드의 집합에서 해당 경로에 위치한 노드값의 합이 가장 큰 경로
+- 후위순회를 사용하는 이유 : 부모노드 이전에 자식노드를 모두 순회하므로 자식노드들의 합을 미리 알 수 있다.
+
+```cpp
+int ans = INT_MIN; //최대 경로 합을 저장하기 위한 전역변수 초기화
+int oneSideMax(TreeNode* root) {
+// 주어진 어떤 노드(root)를 루트로 하는 subtree에서 한쪽방향(left or right)의 최대 경로의 합
+// 을 계산하는 함수 
+if (root == nullptr) return 0;
+
+int left = max(0, oneSideMax(root->left));
+// left 노드 경로의 합 중 큰 값을 left에 저장(음수노드를 대비하여 0 추가)
+int right = max(0, oneSideMax(root->right));
+
+후위 순회 : 왼쪽 -> 오른쪽 -> 부모
+ans = max(ans, left + right + root->val);
+// 해당 루트에서 왼쪽, 오른쪽 각 경로에서의 최대값을 더한 값을 ans에 저장
+return max(left, right) + root->val; 
+// 순회를 마쳤을 때 가장 큰 값이 최대경로의 합
+
+----------------------------------------------------------------------------
+위의 코드를 사용한 완전한 C++ 코드와 설명
+
+#include <iostream>    // 표준 입출력 스트림
+#include <algorithm>   // std::max 함수 사용
+#include <climits>     // INT_MIN 상수 사용(해당 헤더파일은 데이터 타입의 한계(최대,최소)정의
+
+//algorithm 헤더파일은 아래의 다양한 알고리즘 제공
+//정렬: sort, stable_sort
+//탐색: find, binary_search
+//수정: reverse, rotate, shuffle
+//집합 연산: merge, set_union, set_intersection
+//기타: min, max, accumulate
+
+// 이진 트리 노드 정의
+struct TreeNode {
+    int val;            // 노드가 저장하는 값
+    TreeNode* left;     // 왼쪽 자식 노드 포인터
+    TreeNode* right;    // 오른쪽 자식 노드 포인터
+
+    // 생성자: 호출 시 자동으로 TreeNode 구조체는 int x 매개변수를 받고,
+    // x값은 val의 매개변수가 되며, left, right는 아무것도 가르키지 않는 상태로 초기화
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+// 생성자란 ? : 클래스나 구조체에서 객체가 생성될 때 호출되는 특수한 함수이다. 
+// 생성자는 객체를 초기화하는 데 사용되며, 클래스 이름과 동일한 이름을 갖는다. 
+// 반환값을 명시하지 않으며, 자동으로 호출된다.
+
+// 최대 경로 합을 저장하기 위한 전역 변수 초기화
+int ans = INT_MIN;
+
+// 후위 순회를 사용하여 이진 트리에서 최대 경로 합을 계산하는 함수
+int oneSideMax(TreeNode* root) {
+    // 주어진 어떤 노드(root)를 루트로 하는 subtree에서 한쪽방향(left or right)의 최대 경로의 합을 계산하는 함수 
+    if (root == nullptr) return 0;
+    
+    // 왼쪽 서브트리의 최대 경로 합 계산 (음수는 0으로 대체)
+    int left = std::max(0, oneSideMax(root->left));
+    // left 노드 경로의 합 중 큰 값을 left에 저장(음수노드를 대비하여 0 추가)
+    
+    // 오른쪽 서브트리의 최대 경로 합 계산 (음수는 0으로 대체)
+    int right = std::max(0, oneSideMax(root->right));
+    // right 노드 경로의 합 중 큰 값을 right에 저장(음수노드를 대비하여 0 추가)
+    
+    // 후위 순회 : 왼쪽 -> 오른쪽 -> 부모
+    ans = std::max(ans, left + right + root->val);
+    // 해당 루트에서 왼쪽, 오른쪽 각 경로에서의 최대값을 더한 값을 ans에 저장
+    
+    // 현재 노드를 루트로 하는 경로의 최대 합을 반환 (왼쪽 또는 오른쪽 중 큰 값에 현재 노드의 값 추가)
+    return std::max(left, right) + root->val; 
+    // 순회를 마쳤을 때 가장 큰 값이 최대경로의 합
+}
+
+int main() {
+    // 예제 트리 생성
+    /*
+        트리 구조:
+            1
+           / \
+          2   3
+         / \
+        4   5
+    */
+    
+    // 루트 노드 생성
+    TreeNode* root = new TreeNode(1);
+    
+    // 왼쪽 서브트리 생성
+    root->left = new TreeNode(2);
+    root->left->left = new TreeNode(4);
+    root->left->right = new TreeNode(5);
+    
+    // 오른쪽 서브트리 생성
+    root->right = new TreeNode(3);
+    
+    // 최대 경로 합 계산 시작
+    oneSideMax(root);
+    
+    // 결과 출력
+    std::cout << "Maximum Path Sum: " << ans << std::endl; // 출력: 11 (4 + 2 + 5)
+    
+    // 동적 할당된 메모리 해제 (메모리 누수 방지)
+    delete root->left->left;
+    delete root->left->right;
+    delete root->left;
+    delete root->right;
+    delete root;
+    
+    return 0;
+}
+
+```
+
+### LeetCode 105_Medium(전, 중위 순회의 결과를 기반으로 유일한 이진 트리를 복원)
